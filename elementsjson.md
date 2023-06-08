@@ -531,6 +531,42 @@ event: "click"
 sceneId: ""
 ```
 
+### change-room-on
+
+Change room on click (default), it change the room only for you.
+
+```json
+"change-room-on": "roomId:12345678;sceneId:real-estate-1"
+```
+
+Defaults:
+
+```json
+event: "click"
+roomId: ""
+sceneId: ""
+```
+
+### teleporter
+
+This component uses the `change-room-on` component.
+
+```json
+{
+  "enabled": true,
+  "components": {
+    "position": "8 0 5.5",
+    "rotation": "0 -45 0",
+    "teleporter": {
+      "roomId": "12345678",
+      "sceneId": "my-scene",
+      "image": "/scenes/my-scene/preview.webp"
+    }
+  }
+}
+```
+
+
 ### open-url-on-click
 
 ```json
@@ -760,6 +796,21 @@ To show the button but disabled if the user is not moderator
     "actions": [
       {
         "type": "changeScene",
+        "sceneId": "real-estate"
+      }
+    ]
+  },
+```
+
+`changeRoom` action:
+
+```json
+  {
+    "label": "Retour au showroom",
+    "actions": [
+      {
+        "type": "changeRoom",
+        "roomId": "12345678",
         "sceneId": "real-estate"
       }
     ]
