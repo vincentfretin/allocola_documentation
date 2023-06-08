@@ -40,7 +40,6 @@ When you use the `environment` component, the `reflection` component is automati
     "environment": "playArea:400;preset:default;dressing:none;shadow:false;fog:0"
   },
   "overrides": {
-    "reflection": false,
     "hemisphereLightIntensity": 2.0
   },
 ```
@@ -128,6 +127,58 @@ You can combine the two keys `"comment"` and `"enabled"` to make a group comment
 ```
 
 ## Available components
+
+### environment
+
+You can use the `environment` component, see the [documentation](https://github.com/supermedium/aframe-environment-component).
+We added some overrides to specify light intensity of the hemisphere light and directional light (sun) created by the `environment` component. The `sunLightPosition` for `environment` component needs to be a normalized `Vector3` because it uses the sun position to calculate the fog distance, but sometimes it means the light is inside a model, so you may want to move it up, especially for shadows. Specifying it in "overrides" will make sure the sun light position is set after the environment component finished calculating fog distance based on the default or specified `sunLightPosition` of the environment component.
+You can also tune [shadowBias](https://aframe.io/docs/master/components/light.html#configuring_shadows_shadowbias) option if you see shadows are not crisp.
+
+```json
+  "components": {
+    "environment": "playArea:400;preset:arches;dressing:none;shadow:true;shadowSize:120;fog:0.4"
+  },
+  "overrides": {
+    "hemisphereLightIntensity": 1.5,
+    "sunLightPosition": "-22 32 66",
+    "sunLightIntensity": 3.0,
+    "shadowBias": 0.004
+  },
+```
+
+To dynamically calculate an envmap of the scene glb with the directional light created from the environment component, you can set reflection to true, this will use the aframe `reflection` component at the right time.
+
+```json
+  "overrides": {
+    "reflection": true
+  }
+```
+
+### environment-settings
+
+If you defined it in blender via the hubs addon, you don't need to use it in the json.
+Here are the default values:
+
+```json
+"components": {
+  "environment-settings": {
+    "toneMapping": "LUTToneMapping",
+    "toneMappingExposure": 1,
+    "backgroundColor": "skyblue",
+    "backgroundTexture": "",
+    "envMapTexture": ""
+}
+```
+The `backgroundTexture` and the `envMapTexture` support both hdr and ldr (jpeg, webp).
+The `toneMapping` is one of `"NoToneMapping", "LinearToneMapping", "ReinhardToneMapping", "CineonToneMapping", "ACESFilmicToneMapping", "CustomToneMapping", "LUTToneMapping"`
+
+Example of sky with clouds:
+
+```json
+    "backgroundTexture": "../kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+```
+
+Note that specifying `backgroundTexture` this is not compatible with using the `environment` component.
 
 ### Adding a model inside a mediaframe
 
@@ -463,7 +514,6 @@ If you create a scene with only 360 images, you will have something like this:
     "environment": "playArea:400;preset:arches;dressing:none;ground:none;shadow:false;fog:0"
   },
   "overrides": {
-    "reflection": false,
     "hemisphereLightIntensity": 2.0
   },
   "options": {
@@ -845,8 +895,6 @@ For a simple configurator experience without multi users:
 
 ```json
   "overrides": {
-    "reflection": false,
-    "hemisphereLightIntensity": 0,
     "orbitControls": {
       "autoRotate": true,
       "autoRotateSpeed": 0.75,
@@ -872,7 +920,6 @@ For a 360 home staging experience:
     "environment": "playArea:400;preset:arches;dressing:none;ground:none;shadow:false;fog:0"
   },
   "overrides": {
-    "reflection": false,
     "hemisphereLightIntensity": 2.0
   },
   "options": {
