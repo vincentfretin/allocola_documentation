@@ -237,7 +237,7 @@ converted to json that would be:
         "position": "0 0.001 0",
         "rotation": "-90 0 0",
         "geometry": "primitive: plane; width: 1.5; height: 0.6",
-        "material" : "color: red",
+        "material": "color: red",
         "visible": "true"
       }
     }
