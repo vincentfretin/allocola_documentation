@@ -184,6 +184,25 @@ Note: If your model appears black, if generally means there is no lights defined
 
 Note: this will change soon to be able to use a `"media-image": "images/kia_red_2x1.webp"` component instead of defining `geometry` and `material`.
 
+### Navmesh
+
+You can use the nav-mesh and visible (with value false) hubs component when you create your scene in blender with the hubs addon.
+
+Or you can create a plane in the json:
+
+```json
+{
+  "class": "navmesh",
+  "components": {
+  "position": "0 0 0",
+  "rotation": "-90 0 0",
+  "geometry": "primitive: plane; width: 500; height: 500",
+  "material": "color: green",
+  "visible": "false"
+  }
+},
+```
+
 ### Navmesh hole
 
 The `"class": "navmesh-hole"` line will dynamically cut the navmesh so the avatar can't go inside the bounding box of the plant, but if your shadow plane is too large or the leaves of the plant are too large, the area cut will be wrong, so depending of the plant, you may want to allow just to traverse it, so removing the class. But first reduce your shadow plane.
