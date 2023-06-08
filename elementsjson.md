@@ -591,7 +591,7 @@ This component uses the `change-room-on` component.
     "components": {
       "position": "-8 0.013 7",
       "rotation": "0 90 0",
-      "parametric-screen": ""
+      "billboard": ""
     },
     "children": [
       {
