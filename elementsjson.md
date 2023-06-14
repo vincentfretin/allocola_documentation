@@ -256,8 +256,9 @@ Or you can create a plane in the json:
 
 ### Navmesh hole
 
-The `"class": "navmesh-hole"` line will dynamically cut the navmesh so the avatar can't go inside the bounding box of the plant, but if your shadow plane is too large or the leaves of the plant are too large, the area cut will be wrong, so depending of the plant, you may want to allow just to traverse it, so removing the class. But first reduce your shadow plane.
-If the glb file is too complex, it may hurt performance. In this case define a simple plane as a child and use the class on it, [see example](https://github.com/AdaRoseCannon/aframe-xr-boilerplate#simple-navmesh-constraintjs) in html:
+The `"class": "navmesh-hole"` line will dynamically cut the navmesh so the avatar can't go inside the bounding box of the mesh/model. Depending of your mesh, you may want to allow traversing it, in this case don't use the class.
+
+For now, define a simple plane as a child and use the class on it, [see example](https://github.com/AdaRoseCannon/aframe-xr-boilerplate#simple-navmesh-constraintjs) in html:
 
 ```html
 <a-gltf-model src="piano.glb" position="-6 0 1">
@@ -295,8 +296,6 @@ converted to json that would be:
   ]
 },
 ```
-
-Note: If you have a shadow plane in the glb and you have z-fighting, move up your plane by 1 mm in the model.
 
 ### Animated cube
 
