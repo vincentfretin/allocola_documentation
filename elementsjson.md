@@ -565,40 +565,38 @@ Really?
 
 `syncOpened360BetweenParticipants` is true by default, depending on your scene you may want to set it to false.
 
-### change-scene-on
+### change-scene
 
 Change scene on click (default), the change the scene for all participants.
 
 ```json
-"change-scene-on": "sceneId:real-estate-1"
+"change-scene": "sceneId:real-estate-1"
 ```
 
 Defaults:
 
 ```json
-event: "click"
+on: "click"
 sceneId: ""
 ```
 
-### change-room-on
+### change-room
 
 Change room on click (default), it change the room only for you.
 
 ```json
-"change-room-on": "roomId:12345678;sceneId:real-estate-1"
+"change-room": "roomId:12345678;sceneId:real-estate-1"
 ```
 
 Defaults:
 
 ```json
-event: "click"
+on: "click"
 roomId: ""
 sceneId: ""
 ```
 
 ### teleporter
-
-This component uses the `change-room-on` component.
 
 ```json
 {
@@ -606,15 +604,60 @@ This component uses the `change-room-on` component.
   "components": {
     "position": "8 0 5.5",
     "rotation": "0 -45 0",
+    "change-room": "on:hitstart;roomId:12345678;sceneId:my-scene",
     "teleporter": {
-      "roomId": "12345678",
-      "sceneId": "my-scene",
       "image": "/scenes/my-scene/preview.webp"
     }
   }
 }
 ```
 
+### move-to-waypoint
+
+To link to another zone inside the same room, for this you create a named `waypoint` (the id) with all the properties to false (the default) in the area you want to go to.
+
+```json
+  {
+    "enabled": true,
+    "id": "lobby",
+    "components": {
+      "position": "28 0.13 2",
+      "rotation": "0 -90 0",
+      "waypoint": ""
+    }
+  },
+```
+
+then use the `move-to-waypoint` component on a plane for example:
+
+```json
+  {
+    "class": "clickable",
+    "components": {
+      "position": "45 1.6 -1.7",
+      "rotation": "0 -150 0",
+      "geometry": "primitive:plane;width:1;height:0.5",
+      "material": "color:black;opacity:1.0",
+      "text": "value:Click to go up;align:center;font:/assets/custom-msdf.json;negate:false",
+      "move-to-waypoint": "id:lobby"
+    }
+  },
+```
+
+or on a `teleporter` for example:
+
+```json
+{
+  "components": {
+    "position": "8 0 5.5",
+    "rotation": "0 -45 0",
+    "move-to-waypoint": "on:hitstart;id:lobby",
+    "teleporter": {
+      "image": "/scenes/my-scene/preview.webp"
+    }
+  }
+}
+```
 
 ### open-url-on-click
 
