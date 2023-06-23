@@ -126,7 +126,7 @@ You can combine the two keys `"comment"` and `"enabled"` to make a group comment
 },
 ```
 
-## Available components
+## Environment components
 
 ### environment
 
@@ -179,6 +179,8 @@ Example of sky with clouds:
 ```
 
 Note that specifying `backgroundTexture` this is not compatible with using the `environment` component.
+
+## Adding models
 
 ### Adding a model inside a mediaframe
 
@@ -235,67 +237,7 @@ Note: If your model appears black, if generally means there is no lights defined
 
 Note: this will change soon to be able to use a `"media-image": "images/kia_red_2x1.webp"` component instead of defining `geometry` and `material`.
 
-### Navmesh
-
-You can use the nav-mesh and visible (with value false) hubs component when you create your scene in blender with the hubs addon.
-
-Or you can create a plane in the json:
-
-```json
-{
-  "class": "navmesh",
-  "components": {
-  "position": "0 0 0",
-  "rotation": "-90 0 0",
-  "geometry": "primitive: plane; width: 500; height: 500",
-  "material": "color: green",
-  "visible": "false"
-  }
-},
-```
-
-### Navmesh hole
-
-The `"class": "navmesh-hole"` line will dynamically cut the navmesh so the avatar can't go inside the bounding box of the mesh/model. Depending of your mesh, you may want to allow traversing it, in this case don't use the class.
-
-For now, define a simple plane as a child and use the class on it, [see example](https://github.com/AdaRoseCannon/aframe-xr-boilerplate#simple-navmesh-constraintjs) in html:
-
-```html
-<a-gltf-model src="piano.glb" position="-6 0 1">
-  <a-plane
-    class="navmesh-hole"
-    rotation="-90 0 0"
-    width="1.5"
-    height="0.6"
-    position="0 0.001 0"
-    color="red"
-    visible="true"
-  ></a-plane>
-</a-gltf-model>
-```
-
-converted to json that would be:
-
-```json
-{
-  "components": {
-    "gltf-model": "piano.glb",
-    "position": "-6 0 1"
-  },
-  "children": [
-    {
-      "class": "navmesh-hole",
-      "components": {
-        "position": "0 0.001 0",
-        "rotation": "-90 0 0",
-        "geometry": "primitive: plane; width: 1.5; height: 0.6",
-        "material": "color: red",
-        "visible": "true"
-      }
-    }
-  ]
-},
-```
+## Animating things
 
 ### Animated cube
 
@@ -456,6 +398,96 @@ Example of a clickable sphere that loads a 360 image:
 
 The `clickable` class is needed to register the click event for the `load360onclick` component. This is not needed if you have the `waypoint` component on the entity, the `waypoint` component is auto adding the `clickable` class.
 
+### uv-scroll
+
+```json
+  {
+    "enabled": true,
+    "components": {
+      "position": "-8 0.013 7",
+      "rotation": "0 90 0",
+      "billboard": ""
+    },
+    "children": [
+      {
+        "components": {
+          "position": "0 2.175 0.12",
+          "geometry": "primitive:plane;width:4;height:2.25",
+          "material": "src:Lambo_Scroll.jpg;shader:flat;repeat: 0.33 1",
+          "uv-scroll": {
+            "increment": { "x": 0.33, "y": 0 },
+            "speed": { "x": 0.1, "y": 0 }
+          }
+        }
+      }
+    ]
+  },
+```
+
+## Navmesh and movement
+
+### Navmesh
+
+You can use the nav-mesh and visible (with value false) hubs component when you create your scene in blender with the hubs addon.
+
+Or you can create a plane in the json:
+
+```json
+{
+  "class": "navmesh",
+  "components": {
+  "position": "0 0 0",
+  "rotation": "-90 0 0",
+  "geometry": "primitive: plane; width: 500; height: 500",
+  "material": "color: green",
+  "visible": "false"
+  }
+},
+```
+
+### Navmesh hole
+
+The `"class": "navmesh-hole"` line will dynamically cut the navmesh so the avatar can't go inside the bounding box of the mesh/model. Depending of your mesh, you may want to allow traversing it, in this case don't use the class.
+
+For now, define a simple plane as a child and use the class on it, [see example](https://github.com/AdaRoseCannon/aframe-xr-boilerplate#simple-navmesh-constraintjs) in html:
+
+```html
+<a-gltf-model src="piano.glb" position="-6 0 1">
+  <a-plane
+    class="navmesh-hole"
+    rotation="-90 0 0"
+    width="1.5"
+    height="0.6"
+    position="0 0.001 0"
+    color="red"
+    visible="true"
+  ></a-plane>
+</a-gltf-model>
+```
+
+converted to json that would be:
+
+```json
+{
+  "components": {
+    "gltf-model": "piano.glb",
+    "position": "-6 0 1"
+  },
+  "children": [
+    {
+      "class": "navmesh-hole",
+      "components": {
+        "position": "0 0.001 0",
+        "rotation": "-90 0 0",
+        "geometry": "primitive: plane; width: 1.5; height: 0.6",
+        "material": "color: red",
+        "visible": "true"
+      }
+    }
+  ]
+},
+```
+
 ### Seat clickable
 
 ```json
@@ -500,70 +532,6 @@ The `clickable` class is needed to register the click event for the `load360oncl
 ```
 
 If there is a `load360onclick` component associated with a spawn point, the 360 image will be loaded when you enter the room.
-
-### Scene with only 360 images
-
-If you create a scene with only 360 images, you will have something like this:
-
-```json
-{
-  "sceneTitle": "Roundtable",
-  "sceneModel": "",
-  "components": {
-    "environment": "playArea:400;preset:arches;dressing:none;ground:none;shadow:false;fog:0"
-  },
-  "overrides": {
-    "hemisphereLightIntensity": 2.0
-  },
-  "options": {
-    "syncOpened360BetweenParticipants": false
-  },
-  "children": [
-    {
-      "id": "wp1",
-      "class": "seat",
-      "components": {
-        "load360onclick": "360/Round_Table_cam1_360.jpg",
-        "position": "0 0 0",
-        "rotation": "0 0 0",
-        "waypoint": { "canBeSpawnPoint": true, "willDisableMotion": true }
-      }
-    },
-    {
-      "id": "wp2",
-      "class": "seat",
-      "components": {
-        "load360onclick": "360/Round_Table_cam2_360.jpg",
-        "position": "-0.088 0.853 -5.364",
-        "rotation": "0 0 0",
-        "waypoint": { "canBeClicked": true, "canBeOccupied": true, "willDisableMotion": true }
-      }
-    },
-    {
-      "components": {
-        "position": "-0.088 0.403 -5.364",
-        "rotation": "0 0 0",
-        "gltf-model": "models/Chaise_2.glb"
-      }
-    },
-    {
-      "components": {
-        "position": "0 0 0",
-        "rotation": "0 -90 0",
-        "gltf-model": "models/Estrade.glb"
-      }
-    }
-  ]
-}
-```
-
-Your camera in blender/3dsmax where you make the 360 image render needs to be at the position of the eyes of the avatar, that's it 1.6m when standing and 1.6-0.45=1.15m when seated. If your chair origin on the platform is at 0.403 and waypoint on chair is 0.853, you should have your camera on a seat at 0.853 + (1.15 - (0.853 - 0.403)) = 1.553
-
-More generally waypointPosition + (1.15 - (waypointPosition - chairPosition))
-So simply chairPosition + 1.15
-Really?
-
-`syncOpened360BetweenParticipants` is true by default, depending on your scene you may want to set it to false.
 
 ### change-scene
 
@@ -659,6 +627,8 @@ or on a `teleporter` for example:
 }
 ```
 
+## Other components
+
 ### open-url-on-click
 
 ```json
@@ -675,35 +645,11 @@ or on a `teleporter` for example:
   }
 ```
 
-### uv-scroll
-
-```json
-  {
-    "enabled": true,
-    "components": {
-      "position": "-8 0.013 7",
-      "rotation": "0 90 0",
-      "billboard": ""
-    },
-    "children": [
-      {
-        "components": {
-          "position": "0 2.175 0.12",
-          "geometry": "primitive:plane;width:4;height:2.25",
-          "material": "src:Lambo_Scroll.jpg;shader:flat;repeat: 0.33 1",
-          "uv-scroll": {
-            "increment": { "x": 0.33, "y": 0 },
-            "speed": { "x": 0.1, "y": 0 }
-          }
-        }
-      }
-    ]
-  },
-```
-
 ### event-set
 
 See [documentation](https://github.com/supermedium/superframe/tree/master/components/event-set/#readme)
+
+## Adding a NPC
 
 ### Add a NPC
 
@@ -779,6 +725,8 @@ stop: ["###"],
 ```
 
 Only the ten latest messages in the chat are used when making the API call.
+
+## UI customization
 
 ### Buttons
 
@@ -933,6 +881,8 @@ The following configurable options are available with their default value:
   },
 ```
 
+## Scene templates
+
 For a simple configurator experience without multi users:
 
 ```json
@@ -971,6 +921,70 @@ For a 360 home staging experience:
 ```
 
 For other experience like a round table with several views, you want to keep `syncOpened360BetweenParticipants` to false (the default).
+
+### Scene with only 360 images
+
+If you create a scene with only 360 images, you will have something like this:
+
+```json
+{
+  "sceneTitle": "Roundtable",
+  "sceneModel": "",
+  "components": {
+    "environment": "playArea:400;preset:arches;dressing:none;ground:none;shadow:false;fog:0"
+  },
+  "overrides": {
+    "hemisphereLightIntensity": 2.0
+  },
+  "options": {
+    "syncOpened360BetweenParticipants": false
+  },
+  "children": [
+    {
+      "id": "wp1",
+      "class": "seat",
+      "components": {
+        "load360onclick": "360/Round_Table_cam1_360.jpg",
+        "position": "0 0 0",
+        "rotation": "0 0 0",
+        "waypoint": { "canBeSpawnPoint": true, "willDisableMotion": true }
+      }
+    },
+    {
+      "id": "wp2",
+      "class": "seat",
+      "components": {
+        "load360onclick": "360/Round_Table_cam2_360.jpg",
+        "position": "-0.088 0.853 -5.364",
+        "rotation": "0 0 0",
+        "waypoint": { "canBeClicked": true, "canBeOccupied": true, "willDisableMotion": true }
+      }
+    },
+    {
+      "components": {
+        "position": "-0.088 0.403 -5.364",
+        "rotation": "0 0 0",
+        "gltf-model": "models/Chaise_2.glb"
+      }
+    },
+    {
+      "components": {
+        "position": "0 0 0",
+        "rotation": "0 -90 0",
+        "gltf-model": "models/Estrade.glb"
+      }
+    }
+  ]
+}
+```
+
+Your camera in blender/3dsmax where you make the 360 image render needs to be at the position of the eyes of the avatar, that's it 1.6m when standing and 1.6-0.45=1.15m when seated. If your chair origin on the platform is at 0.403 and waypoint on chair is 0.853, you should have your camera on a seat at 0.853 + (1.15 - (0.853 - 0.403)) = 1.553
+
+More generally waypointPosition + (1.15 - (waypointPosition - chairPosition))
+So simply chairPosition + 1.15
+Really?
+
+`syncOpened360BetweenParticipants` is true by default, depending on your scene you may want to set it to false.
 
 ## Object info panel
 
