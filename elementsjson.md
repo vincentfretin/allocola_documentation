@@ -867,21 +867,28 @@ The following configurable options are available with their default value:
   "options": {
     "voice": true,
     "chat": true,
-    "configurator": false,
     "enterMultiplayer": true,
     "enterSolo": false,
     "enterSoloRightAway": false,
     "help": true,
-    "hubsAvatars": false,
     "movementControls": true,
+    "cursorTeleportControls": true,
     "orbitControls": false,
     "shareCamera": true,
     "shareScreen": true,
-    "sceneSwitcher": false,
+    "sceneSwitcher": false, // deprecated, it works only with public scenes on home page
+    "roomSwitcher": true,
     "syncOpened360BetweenParticipants": false,
     "useInstancedMesh": true,
+    "teleportableZones": false,
+    "followModeratorToZone": false,
   },
 ```
+
+- `roomSwitcher` enables a menu with the rooms defined in the `/tenants/${tenanId}/rooms.json` file when you set `"tenantId": "some-customer-name"` in `elements.json` (for now, it will be deprecated once we'll use a database to store the scenes and rooms). Having the `rooms.json` file also enables the `https://allocola.com/tenantId` url that list the rooms.
+- `teleportableZones` shows the left and right arrows to switch between zone
+- `followModeratorToZone` will follow a moderator when they switch zone via the UI buttons that use the `moveTo` action or use a `teleporter` that switch zone with the `move-to-waypoint` component.
+- `useInstancedMesh` auto use instanced mesh for `gltf-model` having the same url.
 
 ## Scene templates
 
