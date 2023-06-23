@@ -548,6 +548,8 @@ on: "click"
 sceneId: ""
 ```
 
+> Note: As a convention, component name starting with a verb does an action when triggered by an event specified by the `on` property.
+
 ### change-room
 
 Change room on click (default), it change the room only for you.
