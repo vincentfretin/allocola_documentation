@@ -239,7 +239,7 @@ Note: this will change soon to be able to use a `"media-image": "images/kia_red_
 
 ### billboard
 
-```json
+```js
 schema: {
   size: { type: "string", default: "large", oneOf: ["large", "small"] },
   color: { type: "color", default: "#eeeeee" },
@@ -279,7 +279,7 @@ The `billboard` component is used with the `teleporter` component when you set t
 
 ```json
 "billboard": { "size": "small", "color": "#292824", "screenColor": "#292824",
-			   "src": this.data.image },
+			   "src": "an_image.webp" },
 ```
 
 ## Animating things
@@ -586,11 +586,13 @@ Change scene on click (default), the change the scene for all participants.
 "change-scene": "sceneId:real-estate-1"
 ```
 
-Defaults:
+Schema with defaults:
 
-```json
-on: "click"
-sceneId: ""
+```js
+schema: {
+  on: { type: "string", default: "click" },
+  sceneId: { type: "string", default: "" },
+}
 ```
 
 > Note: As a convention, component name starting with a verb does an action when triggered by an event specified by the `on` property.
@@ -603,12 +605,14 @@ Change room on click (default), it change the room only for you.
 "change-room": "roomId:12345678;sceneId:real-estate-1"
 ```
 
-Defaults:
+Schema with defaults:
 
-```json
-on: "click"
-roomId: ""
-sceneId: ""
+```js
+schema: {
+  on: { type: "string", default: "click" },
+  roomId: { type: "string", default: "" },
+  sceneId: { type: "string", default: "" },
+}
 ```
 
 ### teleporter
@@ -811,7 +815,7 @@ If you use the "text-davinci-003" model (GPT-3), the following string in appende
 
 For both models, those values are hard coded in the server code that make the API call:
 
-```json
+```js
 stop: ["###"],
 ```
 
