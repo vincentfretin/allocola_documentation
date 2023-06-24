@@ -568,6 +568,8 @@ sceneId: ""
 
 ### teleporter
 
+With image:
+
 ```json
 {
   "enabled": true,
@@ -581,6 +583,22 @@ sceneId: ""
   }
 }
 ```
+
+With text:
+
+```json
+{
+  "enabled": true,
+  "components": {
+    "position": "44.48 0.004 -25.54",
+    "rotation": "0 -140 0",
+    "move-to-waypoint": "on:hitstart;id:zoneCuveTop",
+    "teleporter": { "text": "Monter en haut\nde la cuve" }
+  }
+}
+```
+
+You can have both image and text.
 
 ### move-to-waypoint
 
