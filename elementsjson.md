@@ -693,6 +693,8 @@ See [documentation](https://github.com/supermedium/superframe/tree/master/compon
 
 ### NPC with an AI
 
+Corporate woman agent:
+
 ```json
   {
     "enabled": true,
@@ -709,6 +711,28 @@ See [documentation](https://github.com/supermedium/superframe/tree/master/compon
   },
 ```
 
+Young girl agent:
+
+```json
+{
+  "enabled": true,
+  "class": "npc",
+  "id": "lina",
+  "components": {
+    "position": "40 0 -28",
+    "rotation": "0 180 0",
+    "player-info": "nametag:Lina;avatarSrc:/avatars/models/YoungGirl02.glb;avatarOutfit:outfit_3_lowpoly|2",
+    "ai-agent": {
+      "pitch": 1.1,
+      "enabled": true,
+      "lang": "fr",
+      "greetingMessage": "...",
+      "personality": "...""
+    }
+  }
+}
+```
+
 You can use `#agent` placeholder in the personality field, it will be replaced by the `player-info` nametag value.
 
 Default values for the `ai-agent` component are:
@@ -722,6 +746,8 @@ Default values for the `ai-agent` component are:
 "model": "gpt-3.5-turbo", // The other choice is "text-davinci-003"
 "temperature": 0.7, // between 0 and 2
 "maxTokens": 200, // between 0 and 4096-prompt tokens
+"pitch": 0.8, // pitch of the voice, between 0.8 and 1.2 is good
+"rate": 1.2, // speed of the voice, between 1.0 and 1.2 is good
 ```
 
 You can change them if needed.
