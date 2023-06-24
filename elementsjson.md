@@ -774,6 +774,20 @@ Only the ten latest messages in the chat are used when making the API call.
 
 ## UI customization
 
+### Top banner
+
+This will show a top box that you can close with the specified text, with optional action button.
+
+```json
+"banner": {
+  "actionButton": {
+    "label": "Télécharger la brochure",
+    "url": "https://allocola.com/scenes/oil-refinery/ILLUSION3D_Plaquette_VR_Immersion.pdf"
+  },
+  "text": "Bienvenue sur la solution allocola.com de l'entreprise ILLUSION3D, dans ce module de démonstration, vous pouvez en même temps vous connecter à la fois en VR, en desktop et en mobile."
+},
+```
+
 ### Buttons
 
 You can define custom buttons to be added to the user interface. A button has a label and one action or more.
