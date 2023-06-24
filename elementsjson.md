@@ -237,6 +237,51 @@ Note: If your model appears black, if generally means there is no lights defined
 
 Note: this will change soon to be able to use a `"media-image": "images/kia_red_2x1.webp"` component instead of defining `geometry` and `material`.
 
+### billboard
+
+```json
+schema: {
+  size: { type: "string", default: "large", oneOf: ["large", "small"] },
+  color: { type: "color", default: "#eeeeee" },
+  screenColor: { type: "color", default: "#ffffff" },
+  src: { type: "string", default: "" },
+  ratio: { type: "number", default: 1.777 }, // 16/9
+},
+```
+
+large 16/9 billboard with image:
+
+```json
+{
+  "enabled": true,
+  "components": {
+    "position": "-8 0.013 7",
+    "rotation": "0 90 0",
+    "billboard": "src:images/Formation-pratique_1024x576.jpg"
+  }
+},
+```
+
+if the image is square, specify the ratio 1:
+
+```json
+{
+  "enabled": true,
+  "components": {
+    "position": "33 0.10 -22",
+    "rotation": "0 140 0",
+    "billboard": "src:images/a_photo_1024x1024.webp;ratio:1"
+  }
+},
+```
+
+The `billboard` component is used with the `teleporter` component when you set the `image` or `text` property. It's configured like this:
+
+```json
+"billboard": { "size": "small", "color": "#292824", "screenColor": "#292824",
+			   "src": this.data.image },
+```
+
 ## Animating things
 
 ### Animated cube
