@@ -876,16 +876,22 @@ The field `"role"` follows the ChatGPT semantic, so can be `"user"` or `"assista
 
 makes the button visible only if a 360 image is opened.
 
-To show the button only if user is moderator :
+To show the button only if user is moderator:
 
 ```json
     "availableExpr": "isModerator",
 ```
 
-To show the button but disabled if the user is not moderator
+To show the button but disabled if the user is not moderator:
 
 ```json
     "disabledExpr": "not isModerator",
+```
+
+To temporarily remove the button but keep it in the json file:
+
+```json
+   "availableExpr": "isCommented",
 ```
 
 `changeScene` action:
