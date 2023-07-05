@@ -443,6 +443,9 @@ Example of a clickable sphere that loads a 360 image:
 
 The `clickable` class is needed to register the click event for the `load360onclick` component. This is not needed if you have the `waypoint` component on the entity, the `waypoint` component is auto adding the `clickable` class.
 
+To use a stereoscopic top-bottom image, suffix your image by `_TB` like this `myimage_TB.webp`.
+This uses a modified version of the [aframe stereo component](https://github.com/oscarmarinmiro/aframe-stereo-component) to support top-bottom images ([see relevant PR](https://github.com/oscarmarinmiro/aframe-stereo-component/pull/45)).
+
 ### uv-scroll
 
 ```json
