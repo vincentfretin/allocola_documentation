@@ -779,7 +779,7 @@ Young girl agent:
       "enabled": true,
       "lang": "fr",
       "greetingMessage": "...",
-      "personality": "...""
+      "personality": "..."
     }
   }
 }
