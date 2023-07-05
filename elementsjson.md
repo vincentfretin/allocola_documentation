@@ -536,7 +536,7 @@ converted to json that would be:
 },
 ```
 
-### Seat clickable
+### Clickable seat
 
 ```json
   {
@@ -546,6 +546,45 @@ converted to json that would be:
       "position": "1.573 0.5 -1.744",
       "rotation": "0 90 0",
       "waypoint": { "canBeClicked": true, "canBeOccupied": true, "willDisableMotion": true }
+    }
+  },
+```
+
+Note that for clickable waypoint, it's really rotated by 180 degrees. This is not the case for non clickable waypoint like spawn point or teleportable zones, if you use them via hubs blender addon those will be wrong by 180 degrees currently.
+This can be a bit weird when adding clickable waypoints via the editor and specifying the y rotation with the current rotation of the camera rig (you can see it with pressing `p` shortcut).
+This is currently this way because of the blender hubs convention that uses blender Y-negative for the forward direction for the avatar. FrameVR on the other end uses the Y-positive ([see video](https://youtu.be/E136tQdsWLw?t=323) that uses `fcta` named node for chairs) that matches better the aframe rotation you see.
+I'll probably change the behavior later to apply the 180 degrees rotation only for waypoint components defined in glb.
+I'll add support for `fcta` named node in the future to add the waypoint component to it.
+
+`waypoint` schema with defaults:
+
+```js
+schema: {
+  canBeClicked: { type: "bool", default: false },
+  canBeOccupied: { type: "bool", default: false },
+  canBeSpawnPoint: { type: "bool", default: false },
+  snapToNavMesh: { type: "bool", default: false },
+  willDisableMotion: { type: "bool", default: false },
+  willDisableTeleporting: { type: "bool", default: false },
+  willMaintainInitialOrientation: { type: "bool", default: false },
+  isOccupied: { type: "bool", default: false },
+  occupiedBy: { type: "string", default: "scene" },
+}
+```
+
+`snapToNavMesh`, `willDisableTeleporting`, `willMaintainInitialOrientation` are currently not used.
+
+### Clickable stand up position
+
+This is the same as the clickable seat but using `willDisableMotion` to false.
+
+```json
+  {
+    "id": "wp4",
+    "components": {
+      "position": "1.573 0.5 -1.744",
+      "rotation": "0 90 0",
+      "waypoint": { "canBeClicked": true, "canBeOccupied": true, "willDisableMotion": false }
     }
   },
 ```
@@ -564,6 +603,9 @@ converted to json that would be:
   },
 ```
 
+Current behavior is using the exact position defined, so several avatars can be at the same position. Avatars that are close to you (lower than 0.5m) are invisible to you but other participants can see that there are avatars on the same position.
+I'll probably implement a repulsive behavior in the future if there is already an avatar at that position.
+
 ### Spawn point seated
 
 ```json
@@ -580,6 +622,23 @@ converted to json that would be:
 ```
 
 If there is a `load360onclick` component associated with a spawn point, the 360 image will be loaded when you enter the room.
+
+### Teleportable zone
+
+Left and right arrows are shown to switch between zones if you set the `"teleportableZones": true` option.
+
+A teleportable zone is a waypoint with all the options to false (the default):
+
+```json
+  {
+    "id": "zoneA",
+    "components": {
+      "position": "-7.58 0.03 16.48",
+      "rotation": "-2 90 0",
+      "waypoint": {}
+    }
+  },
+```
 
 ### change-scene
 
