@@ -478,20 +478,24 @@ This uses a modified version of the [aframe stereo component](https://github.com
 
 You can use the nav-mesh and visible (with value false) hubs component when you create your scene in blender with the hubs addon.
 
-Or you can create a plane in the json:
+Or you can create a plane with class "navmesh" in the json:
 
 ```json
 {
   "class": "navmesh",
   "components": {
-  "position": "0 0 0",
-  "rotation": "-90 0 0",
-  "geometry": "primitive: plane; width: 500; height: 500",
-  "material": "color: green",
-  "visible": "false"
+    "position": "0 0 0",
+    "rotation": "-90 0 0",
+    "geometry": "primitive: plane; width: 500; height: 500",
+    "material": "color: green",
+    "visible": "false"
   }
 },
 ```
+
+Having the class "navmesh" will automatically add the `nav-mesh` component from aframe-extras (used for ai agents) and `simple-navmesh-constraint` (used for your avatar) is set automatically on your camera rig if navmesh entities are available.
+For information, it's configured with those parameters:
+`navmesh:.navmesh;fall:0.5;height:0;exclude:.navmesh-hole;`
 
 ### Navmesh hole
 
