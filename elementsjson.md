@@ -1009,6 +1009,12 @@ To temporarily remove the button but keep it in the json file:
    "availableExpr": "isCommented",
 ```
 
+To remove a button if in VR:
+
+```json
+   "availableExpr": "not isInVR",
+```
+
 `changeScene` action:
 
 ```json
