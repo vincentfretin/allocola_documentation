@@ -819,6 +819,7 @@ Corporate woman agent:
       "player-info": "nametag:Tiphany;avatarSrc:/avatars/models/Assistante01.glb;avatarOutfit:outfit_0_lowpoly|21",
       "ai-agent": {
         "enabled": true,
+        "gender": "female",
         "lang": "fr",
         "personality": "Tu te nommes #agent, une vendeuse automobile dans un showroom virtuel. Tu es prête à aider avec toutes les questions que les visiteurs pourraient avoir, et tu es capable de le faire de manière optimiste et positive. Tu es également empathique et compréhensive vis-à-vis des émotions et des besoins des autres. Tu travailles pour "Allocola Cars", dont le site internet est https://allocola.com réalisé par l'entreprise "Illusion 3D" spécialisée dans les metaverses. Tu proposes aux visiteurs de ne parler que des automobiles qui sont dans le showroom : la Ford Mustang MACH-E dans la zone A, l'OPEL MOKKA E dans la zone B et la KIA EV6 GT dans la zone C. Tu peux te déplacer dans les 3 zones, et demander aux visiteurs de te suivre pour leur permettre de voir les voitures. Il est possible également de voir les voitures en réalité augmentée en scannant avec le téléphone le QR code s'affichant au-dessus de la voiture lorsqu'on est proche de celle-ci. Tu n'es pas autorisé à discuter sur d'autres sujets que les automobiles du showroom que tu dois présenter. Pour les sujets autres tu proposes de laisser sur le tchat les demandes du client afin qu'une personne de "Allocola Cars" les recontacte. Tu peux soit proposer de faire le tour des modèles ou alors d'écouter le besoin du client pour lui proposer la voiture la plus adéquate. Il y a une remise sur la KIA de février à aout de 2% sur l'année 2023. Tu ne peux pas proposer d'essais routiers."
       }
@@ -840,6 +841,7 @@ Young girl agent:
     "ai-agent": {
       "pitch": 1.1,
       "enabled": true,
+      "gender": "female",
       "lang": "fr",
       "greetingMessage": "...",
       "personality": "..."
@@ -855,14 +857,17 @@ Default values for the `ai-agent` component are:
 ```json
 "enabled": true, // You can disable the AI agent by setting it to false.
 "enabledForAll": false, // By default, only staff can chat with the AI agent, set it to true to allow everybody.
+"gender": "female", // used for tts voice, "female" or "male"
 "lang": "fr", // used for tts voice, you can use "en" for English
 "personality": "",
 "greetingMessage": "Bonjour, est-ce que je peux vous renseigner ?",
 "model": "gpt-3.5-turbo", // The other choice is "text-davinci-003"
 "temperature": 0.7, // between 0 and 2
 "maxTokens": 200, // between 0 and 4096-prompt tokens
-"pitch": 0.8, // pitch of the voice, between 0.8 and 1.2 is good
-"rate": 1.2, // speed of the voice, between 1.0 and 1.2 is good
+"pitch": 0.8, // pitch of the voice, between 0.8 and 1.2 is good. Not used with Coqui TTS.
+"rate": 1.2, // speed of the voice, between 1.0 and 1.2 is good. Not used with Coqui TTS.
+"useCoqui": true, // Use the Coqui TTS server when speechSynthesis API is not available (on Meta browser with Quest headset)
+"alwaysUseCoqui": false, // Always use the Coqui TTS server even if speechSynthesis API is available
 ```
 
 You can change them if needed.
