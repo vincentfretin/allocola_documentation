@@ -33,7 +33,7 @@ You need at least
 
 You don't need the `environment` component if you create a scene in blender and you defined an envmap, lightmaps and reflection probes with the hubs components in blender.
 
-When you use the `environment` component, the `reflection` component is automatically added to create an envmap of the scene, you can disable it like this, you can also configure the created hemisphere light intensity that is created with the `environment` component:
+You can configure the created hemisphere light intensity that is created with the `environment` component:
 
 ```json
   "components": {
