@@ -1143,6 +1143,7 @@ The following configurable options are available with their default value:
     "useInstancedMesh": true,
     "teleportableZones": false,
     "followModeratorToZone": false,
+    "aiChatEdit": false
   },
 ```
 
@@ -1150,6 +1151,7 @@ The following configurable options are available with their default value:
 - `teleportableZones` shows the left and right arrows to switch between zone
 - `followModeratorToZone` will follow a moderator when they switch zone via the UI buttons that use the `moveTo` action or use a `teleporter` that switch zone with the `move-to-waypoint` component.
 - `useInstancedMesh` auto use instanced mesh for `gltf-model` having the same url.
+- `aiChatEdit` shows a "Start a new conversation" and "Edit personality" buttons in AI Chat.
 
 ## Scene templates
 
