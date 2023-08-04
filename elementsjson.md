@@ -861,9 +861,9 @@ Default values for the `ai-agent` component are:
 "lang": "fr", // used for tts voice, you can use "en" for English
 "personality": "",
 "greetingMessage": "Bonjour, est-ce que je peux vous renseigner ?",
-"model": "gpt-3.5-turbo", // The other choice is "text-davinci-003"
+"model": "gpt-3.5-turbo", // Other choices are "text-davinci-003", "gpt-4"
 "temperature": 0.7, // between 0 and 2
-"maxTokens": 200, // between 0 and 4096-prompt tokens
+"maxTokens": 200, // Between 0 and 4096 tokens or more depending on model. Note this is used for both prompt and response on gpt-3.5-turbo, you can set it to null to not give any limit for the response.
 "pitch": 0.8, // pitch of the voice, between 0.8 and 1.2 is good. Not used with Coqui TTS.
 "rate": 1.2, // speed of the voice, between 1.0 and 1.2 is good. Not used with Coqui TTS.
 "useCoqui": true, // Use the Coqui TTS server when speechSynthesis API is not available (on Meta browser with Quest headset)
