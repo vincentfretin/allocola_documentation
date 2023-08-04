@@ -143,6 +143,7 @@ The svg qrcode is created from the same library, with ECC Medium, border 4.
   ]
 ```
 
+Note: For a choice, you can set `"enabled": false` to temporarily hide this choice.
 ### Show banner in AR
 
 Be aware this disables the take picture button on iPhone, but not on iPad. On Chrome Android, there is no take picture button (see [https://github.com/google/model-viewer/issues/1481](https://github.com/google/model-viewer/issues/1481)).
