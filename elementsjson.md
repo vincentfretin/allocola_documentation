@@ -167,6 +167,7 @@ Here are the default values:
     "backgroundColor": "skyblue",
     "backgroundTexture": "",
     "envMapTexture": ""
+  }
 }
 ```
 The `backgroundTexture` and the `envMapTexture` support both hdr and ldr (jpeg, webp).
