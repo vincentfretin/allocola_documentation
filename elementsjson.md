@@ -179,7 +179,7 @@ Example of sky with clouds:
     "backgroundTexture": "../kloofendal_48d_partly_cloudy_puresky_1k.hdr",
 ```
 
-Note that specifying `backgroundTexture` this is not compatible with using the `environment` component.
+Note that specifying `backgroundTexture` this is not compatible with using the `environment` component. You will need to disable the sky from the `environment` component like this: `"environment": "skyType:none"`.
 
 ## Adding models
 
