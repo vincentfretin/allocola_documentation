@@ -1144,7 +1144,8 @@ The following configurable options are available with their default value:
     "useInstancedMesh": true,
     "teleportableZones": false,
     "followModeratorToZone": false,
-    "aiChatEdit": false
+    "aiChatEdit": false,
+    "targetOrigin": ""
   },
 ```
 
@@ -1153,7 +1154,14 @@ The following configurable options are available with their default value:
 - `followModeratorToZone` will follow a moderator when they switch zone via the UI buttons that use the `moveTo` action or use a `teleporter` that switch zone with the `move-to-waypoint` component.
 - `useInstancedMesh` auto use instanced mesh for `gltf-model` having the same url.
 - `aiChatEdit` shows a "Start a new conversation" and "Edit personality" buttons in AI Chat.
-
+- `targetOrigin` is used to define the target origin for the [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) calls to the parent window for an experience embed as an iframe like a configurator. The calls are done only if `targetOrigin` is not the empty string, for example `"targetOrigin": "https://allocola.com"`. For now only this event is implemented:
+```js
+const targetOrigin = options.targetOrigin;
+const data = { category: categoryLabel, choice: choice.label };
+window.parent.postMessage(
+  { action: "choice-selected", detail: data }, targetOrigin);
+```
+Example of iframe integration in https://allocola.com/scenes/shower-configurator/
 ## Scene templates
 
 For a simple configurator experience without multi users:
