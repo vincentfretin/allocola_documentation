@@ -246,6 +246,7 @@ schema: {
   color: { type: "color", default: "#eeeeee" },
   screenColor: { type: "color", default: "#ffffff" },
   src: { type: "string", default: "" },
+  text: { type: "string", default: "" },
   ratio: { type: "number", default: 1.777 }, // 16/9
 },
 ```
@@ -276,12 +277,13 @@ if the image is square, specify the ratio 1:
 },
 ```
 
-The `billboard` component is used with the `teleporter` component when you set the `image` or `text` property. It's configured like this:
+The `billboard` component is used with the `teleporter` component when you set the `src` or `text` property. It's configured like this:
 
 ```json
-"billboard": { "size": "small", "color": "#292824", "screenColor": "#292824",
-			   "src": "an_image.webp" },
+"billboard": { "size": "small", "color": "#292824", "screenColor": "#292824", "src": "an_image.webp", "text": "some text" },
 ```
+
+`screenColor` is used only if there is no image specified.
 
 ## Animating things
 
@@ -694,7 +696,7 @@ With image:
     "rotation": "0 -45 0",
     "change-room": "on:hitstart;roomId:12345678;sceneId:my-scene",
     "teleporter": {
-      "image": "/scenes/my-scene/preview.webp"
+      "src": "/scenes/my-scene/preview.webp"
     }
   }
 }
@@ -757,7 +759,7 @@ or on a `teleporter` for example:
     "rotation": "0 -45 0",
     "move-to-waypoint": "on:hitstart;id:lobby",
     "teleporter": {
-      "image": "/scenes/my-scene/preview.webp"
+      "src": "destination.webp"
     }
   }
 }
