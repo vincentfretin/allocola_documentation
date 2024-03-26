@@ -798,7 +798,7 @@ See [documentation](https://github.com/supermedium/superframe/tree/master/compon
     "components": {
       "position": "-7.73 0.03 -4.22",
       "rotation": "0 140 0",
-      "player-info": "nametag:Odette;avatarSrc:/avatars/models/female/044.glb;avatarOutfit:outfit_3_lowpoly;state:IDLE;avatarPose:sit"
+      "player-info": "name:Odette;avatarSrc:/avatars/models/female/044.glb;avatarOutfit:outfit_3_lowpoly;state:IDLE;avatarPose:sit"
     }
   }
 ```
@@ -819,7 +819,7 @@ Corporate woman agent:
     "class": "npc",
     "components": {
       "position": "0 0.03 13.9",
-      "player-info": "nametag:Tiphany;avatarSrc:/avatars/models/Assistante01.glb;avatarOutfit:outfit_0_lowpoly|21",
+      "player-info": "name:Tiphany;avatarSrc:/avatars/models/Assistante01.glb;avatarOutfit:outfit_0_lowpoly|21",
       "ai-agent": {
         "enabled": true,
         "gender": "female",
@@ -840,7 +840,7 @@ Young girl agent:
   "components": {
     "position": "40 0 -28",
     "rotation": "0 180 0",
-    "player-info": "nametag:Lina;avatarSrc:/avatars/models/YoungGirl02.glb;avatarOutfit:outfit_3_lowpoly|2",
+    "player-info": "name:Lina;avatarSrc:/avatars/models/YoungGirl02.glb;avatarOutfit:outfit_3_lowpoly|2",
     "ai-agent": {
       "pitch": 1.1,
       "enabled": true,
@@ -853,7 +853,7 @@ Young girl agent:
 }
 ```
 
-You can use `#agent` placeholder in the personality field, it will be replaced by the `player-info` nametag value.
+You can use `#agent` placeholder in the personality field, it will be replaced by the `player-info` name value.
 
 Default values for the `ai-agent` component are:
 
